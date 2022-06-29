@@ -1,84 +1,52 @@
-# android_device_xiaomi_umi_TWRP
-For building TWRP for Xiaomi Mi 10 / 10 Pro
+![TWRP](https://i.ibb.co/BfQqn97/TWRP-logo-banner-1.jpg "TWRP")
 
-TWRP device tree for Xiaomi Mi 10 and Mi 10 Pro
+TeamWin Recovery Project (TWRP) R12 for Xiaomi Mi 10 5G (umi)
+======================================
 
 Kernel and all blobs are extracted from [miui_CMI_21.9.17_1c6ed0daa1_11.0.zip](https://hugeota.d.miui.com/21.9.17/miui_CMI_21.9.17_1c6ed0daa1_11.0.zip) firmware.
 
-The Xiaomi Mi 10 (codenamed _"umi"_) and Xiaomi Mi 10 Pro (codenamed _"cmi"_) are high-end smartphones from Xiaomi.
+# How to build
+Download TWRP's source and umi's repos. Your local manifest should be something like:
 
-Xiaomi Mi 10 / 10 Pro was announced and released in February 2020.
+```bash
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+<!-- Device tree -->
+    <project name="alextroj/android_device_xiaomi_umi_TWRP" path="device/xiaomi/umi" remote="github" revision="android-12.1" />
+
+<!-- QCOM decryption -->
+  <project name="TeamWin/android_device_qcom_twrp-common" path="device/qcom/twrp-common" remote="github" revision="android-12.1"/>
+</manifest>
+```
+
+Then go to the source folder and run:
+
+```bash
+. build/envsetup.sh && lunch omni_umi-eng && mka recoveryimage
+```
+
+Device configuration for Xiaomi Mi 10 5G
+=========================================
+
+The Xiaomi MI 10 (codenamed _"umi"_) is a high-end smartphone from Xiaomi.
+
+It was announced on February 2020. Release date was February 2020.
 
 ## Device specifications
 
-| Device       | Xiaomi Mi 10 / 10 Pro                       |
-| -----------: | :------------------------------------------ |
-| SoC          | Qualcomm SM8250 Snapdragon 865              |
-| CPU          | 8x Qualcomm® Kryo™ 585 up to 2.84GHz        |
-| GPU          | Adreno 650                                  |
-| Memory       | 8GB / 12GB RAM (LPDDR5)                     |
-| Shipped Android version | 10                               |
-| Storage      | 128GB / 256GB / 512GB UFS 3.0 flash storage |
-| Battery      | Non-removable Li-Po 4780mAh                 |
-| Dimensions   | 162.58 x 74.8 x 8.96 mm                     |
-| Display      | 2340 x 1080 (19.5:9), 6.67 inch             |
+Basic   | Spec Sheet
+-------:|:-------------------------
+SoC     | Qualcomm SDM865 Snapdragon 865
+CPU     | Octa-core (2.84 GHz Kryo 485 & 2.42GHz Kryo 485 & 1.8GHz Kryo 485)
+GPU     | Adreno 650
+Memory  | 6/8 GB RAM
+Shipped Android Version | 10.0 with MIUI 11
+Storage | 128/256 GB
+Battery | Non-removable Li-Po 4500 mAh battery
+Display | 1080 x 2340 pixels, 19.5:9 ratio, 6.67 inches, AMOLED HDR10+
+Camera  | 108MP(Primary) 20MP(Ultra-wide) 12MP(Telephoto 2x Optical Zoom) 8MP(Telephoto 5x Hybrid zoom)
 
 ## Device picture
 
-![Xiaomi Mi 10](https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1581494372.61732687.jpg)
-
-## Features
-
-**Works**
-
-- Booting.
-- **Decryption** (Android 11)
-- ADB
-- MTP
-- OTG
-- Super partition functions
-- Vibration
-
-Mi 10 is using Dynamic Partition! We need update from TWRP.
-
-## Compile
-
-First checkout minimal twrp with omnirom tree:
-
-```
-repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12
-repo sync
-```
-
-Then add these projects to .repo/manifest.xml:
-
-```xml
-<project path="device/xiaomi/umi" name="sekaiacg/android_device_xiaomi_umi_TWRP" remote="github" revision="android-12.1" />
-```
-
-Use ccache
-```
-#Enable ccache
-export USE_CCACHE=1
-export CCACHE_EXEC=$(which ccache)
-```
-
-Finally execute these:
-
-```
-export ALLOW_MISSING_DEPENDENCIES=true
-. build/envsetup.sh
-lunch twrp_umi-eng
-mka recoveryimage
-```
-
-To test it:
-
-```
-fastboot boot out/target/product/umi/recovery.img
-```
-
-## Thanks
-- [FsCrypt fix by mauronofrio](https://github.com/mauronofrio/android_bootable_recovery)
-- [Decryption by bigbiff](https://github.com/bigbiff/android_bootable_recovery)
-- [Oneplus 8 TWRP by mauronofrio](https://github.com/mauronofrio/android_device_oneplus_instantnoodle_TWRP)
+![Xiaomi MI 10 5G ](https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-mi-10-pro-5g-1.jpg "Xiaomi MI 10 5G")
