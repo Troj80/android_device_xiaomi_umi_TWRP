@@ -6,7 +6,12 @@ TeamWin Recovery Project (TWRP) R12 for Xiaomi Mi 10 5G (umi)
 Kernel and all blobs are extracted from [miui_CMI_21.9.17_1c6ed0daa1_11.0.zip](https://hugeota.d.miui.com/21.9.17/miui_CMI_21.9.17_1c6ed0daa1_11.0.zip) firmware.
 
 # How to build
-Download TWRP's source and umi's repos. Your local manifest(.repo/manifest.xml) should be something like:
+First checkout minimal twrp with omnirom tree:
+```bash
+repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
+repo sync
+```
+Your local manifest(.repo/manifest.xml) should be something like:
 
 ```bash
 <?xml version="1.0" encoding="UTF-8"?>
@@ -18,6 +23,12 @@ Download TWRP's source and umi's repos. Your local manifest(.repo/manifest.xml) 
 <!-- QCOM decryption -->
   <project name="TeamWin/android_device_qcom_twrp-common" path="device/qcom/twrp-common" remote="github" revision="android-12.1"/>
 </manifest>
+```
+Use ccache
+```bash
+#Enable ccache
+export USE_CCACHE=1
+export CCACHE_EXEC=$(which ccache)
 ```
 
 Then go to the source folder and run:
