@@ -46,7 +46,7 @@ Mi 10 is using Dynamic Partition! We need update from TWRP.
 First checkout minimal twrp with omnirom tree:
 
 ```
-repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11
+repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12
 repo sync
 ```
 
