@@ -15,23 +15,14 @@
 #
 
 PRODUCT_PACKAGES += \
-    bootctrl.kona \
-    bootctrl.kona.recovery \
-    android.hardware.boot@1.0-service \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-impl.recovery \
-    android.hardware.boot@1.0-impl-wrapper.recovery \
-    android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.0-impl-mock.recovery \
+    bootctrl.xiaomi_sm8250 \
+    bootctrl.xiaomi_sm8250.recovery \
     fastbootd
-
-PRODUCT_HOST_PACKAGES += \
-    libandroidicu
 
 # SHIPPING API
 PRODUCT_SHIPPING_API_LEVEL := 29
 # VNDK API
-PRODUCT_TARGET_VNDK_VERSION := 30
+PRODUCT_TARGET_VNDK_VERSION := 31
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -47,4 +38,4 @@ PRODUCT_EXTRA_RECOVERY_KEYS += \
 # PRODUCT_RELEASE_NAME ro.twrp.device.name
 PRODUCT_PROPERTY_OVERRIDES += ro.twrp.device.name=$(PRODUCT_RELEASE_NAME)
 
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/prebuilt/$(PRODUCT_RELEASE_NAME)/modules,recovery/root/vendor/lib/modules)
+TWRP_REQUIRED_MODULES += miui_prebuilt
